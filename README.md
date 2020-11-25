@@ -1,3 +1,3 @@
 # Wechat-Alert
 
-Forwards Specified Zabbix alerts to WeChat for Business
+Forwards specified Zabbix alerts to WeChat for Business
