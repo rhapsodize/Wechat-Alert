@@ -7,13 +7,13 @@ sys.setdefaultencoding( "utf-8" )
 
 class WeChat(object):
         __token_id = ''
-        # init attribute
+        #init attribute
         def __init__(self,url):
                 self.__url = url.rstrip('/')
                 self.__corpid = 'wwd5348195e1cdd809'
                 self.__secret = '2QvlfpUxh4k-JeIuxVNmkh2N7ijfkCs1lzb4Tkgr6xQ'
 
-        # Get TokenID
+        #Get TokenID
         def authID(self):
                 params = {'corpid':self.__corpid, 'corpsecret':self.__secret}
                 data = urllib.urlencode(params)
@@ -24,7 +24,7 @@ class WeChat(object):
                 except KeyError:
                         raise KeyError
                         
-        # Establish a connection
+        #Establish a connection
         def getToken(self,data,url_prefix='/'):
                 url = self.__url + url_prefix + 'gettoken?'
                 try:
@@ -35,7 +35,7 @@ class WeChat(object):
                 content = json.loads(result.read())
                 return content
 
-        # Get sendmessage url
+        #Get sendmessage url
         def postData(self,data,url_prefix='/'):
                 url = self.__url + url_prefix + 'message/send?access_token=%s' % self.__token_id
                 request = urllib2.Request(url,data)
@@ -52,7 +52,7 @@ class WeChat(object):
                         result.close()
                 return content
 
-        # send message
+        #Send message
         def sendMessage(self,touser,message):
                 self.authID()
                 data = json.dumps({
