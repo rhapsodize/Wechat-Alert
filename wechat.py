@@ -5,7 +5,6 @@ import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
-
 class WeChat(object):
         __token_id = ''
         # init attribute
@@ -14,23 +13,17 @@ class WeChat(object):
                 self.__corpid = 'wwd5348195e1cdd809'
                 self.__secret = '2QvlfpUxh4k-JeIuxVNmkh2N7ijfkCs1lzb4Tkgr6xQ'
 
-
         # Get TokenID
         def authID(self):
                 params = {'corpid':self.__corpid, 'corpsecret':self.__secret}
                 data = urllib.urlencode(params)
-
-
                 content = self.getToken(data)
-
-
                 try:
                         self.__token_id = content['access_token']
                         # print content['access_token']
                 except KeyError:
                         raise KeyError
-
-
+                        
         # Establish a connection
         def getToken(self,data,url_prefix='/'):
                 url = self.__url + url_prefix + 'gettoken?'
@@ -41,7 +34,6 @@ class WeChat(object):
                 result = urllib2.urlopen(response)
                 content = json.loads(result.read())
                 return content
-
 
         # Get sendmessage url
         def postData(self,data,url_prefix='/'):
@@ -73,8 +65,7 @@ class WeChat(object):
                         },
                         'safe':"0"
                 },ensure_ascii=False)
-
-
+                
                 response = self.postData(data)
                 print(response)
 
